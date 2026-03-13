@@ -8,6 +8,7 @@ AllCops:
   SuggestExtensions: false
   Exclude:
     - "bin/**/*"
+    - "vendor/**/*"
     - "cronify.gemspec"
 
 # Project uses double-quoted strings throughout

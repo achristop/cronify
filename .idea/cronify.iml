@@ -52,6 +52,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rspec-support (v3.13.7, mise: 3.4.8) [gem]" level="application" />
     <orderEntry type="library" scope="TEST" name="rubocop (v1.85.1, mise: 3.4.8) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubocop-ast (v1.49.1, mise: 3.4.8) [gem]" level="application" />
+    <orderEntry type="library" scope="TEST" name="rubocop-rake (v0.7.1, mise: 3.4.8) [gem]" level="application" />
     <orderEntry type="library" scope="TEST" name="rubocop-rspec (v3.9.0, mise: 3.4.8) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ruby-progressbar (v1.13.0, mise: 3.4.8) [gem]" level="application" />
     <orderEntry type="library" scope="TEST" name="simplecov (v0.22.0, mise: 3.4.8) [gem]" level="application" />
