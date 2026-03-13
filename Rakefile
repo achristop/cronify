@@ -11,6 +11,7 @@ RuboCop::RakeTask.new
 
 desc "Validate RBS type signatures"
 task :rbs do
+  sh "bundle exec rbs collection install"
   sh "bundle exec rbs validate"
 end
 

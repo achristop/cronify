@@ -32,5 +32,7 @@ jobs:
           bundler-cache: true
       - name: Run tests and lint
         run: bundle exec rake
+      - name: Install RBS collection
+        run: bundle exec rbs collection install
       - name: Validate RBS signatures
         run: bundle exec rbs validate
