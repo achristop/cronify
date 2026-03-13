@@ -1,0 +1,25 @@
+module Cronify
+  class IR < Struct[untyped]
+    attr_accessor type: schedule_type?
+    attr_accessor interval: Integer?
+    attr_accessor unit: unit_type?
+    attr_accessor hour: Integer?
+    attr_accessor minute: Integer?
+    attr_accessor days_of_week: Array[Integer]?
+    attr_accessor ordinal: ordinal_type?
+    attr_accessor weekday: Integer?
+    attr_accessor hour_range: [Integer, Integer]?
+
+    def initialize: (
+      ?type: schedule_type?,
+      ?interval: Integer?,
+      ?unit: unit_type?,
+      ?hour: Integer?,
+      ?minute: Integer?,
+      ?days_of_week: Array[Integer]?,
+      ?ordinal: ordinal_type?,
+      ?weekday: Integer?,
+      ?hour_range: [Integer, Integer]?
+    ) -> void
+  end
+end

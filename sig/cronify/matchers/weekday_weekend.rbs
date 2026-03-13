@@ -1,0 +1,10 @@
+module Cronify
+  module Matchers
+    class WeekdayWeekend < Base
+      PATTERN: Regexp
+      DAYS: Hash[String, Array[Integer]]
+
+      def parse: (String input) -> IR
+    end
+  end
+end

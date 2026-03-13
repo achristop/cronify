@@ -1,0 +1,11 @@
+module Cronify
+  module Matchers
+    class OrdinalWeekday < Base
+      PATTERN: Regexp
+      ORDINALS: Hash[String, ordinal_type]
+      WEEKDAYS: Hash[String, Integer]
+
+      def parse: (String input) -> IR
+    end
+  end
+end

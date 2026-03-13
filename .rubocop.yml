@@ -1,0 +1,49 @@
+plugins:
+  - rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 3.2
+  NewCops: enable
+  SuggestExtensions: false
+  Exclude:
+    - "bin/**/*"
+    - "cronify.gemspec"
+
+# Project uses double-quoted strings throughout
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
+
+# YARD comments on public API replace inline module/class docs
+Style/Documentation:
+  Enabled: false
+
+# Spec files have long describe/context blocks by design
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
+
+# ir, tz, and n are well-understood domain abbreviations in this codebase
+Naming/MethodParameterName:
+  AllowedNames:
+    - ir
+    - n
+    - tz
+
+# parse_time handles several named time formats — complexity is inherent
+Metrics/CyclomaticComplexity:
+  Max: 8
+
+# IR assertions are clearest when grouped in a single example
+RSpec/MultipleExpectations:
+  Max: 5
+
+# Some edge case specs require setup + assertion lines
+RSpec/ExampleLength:
+  Max: 8
+
+# Error handling tests are intentionally split into a dedicated file
+RSpec/SpecFilePathFormat:
+  Enabled: false

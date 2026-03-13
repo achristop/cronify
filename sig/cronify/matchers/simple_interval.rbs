@@ -1,0 +1,9 @@
+module Cronify
+  module Matchers
+    class SimpleInterval < Base
+      PATTERN: Regexp
+
+      def parse: (String input) -> IR
+    end
+  end
+end

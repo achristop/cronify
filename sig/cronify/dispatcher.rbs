@@ -1,0 +1,7 @@
+module Cronify
+  class Dispatcher
+    MATCHERS: Array[Class]
+
+    def self.dispatch: (String input) -> IR
+  end
+end

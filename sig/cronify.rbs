@@ -1,0 +1,18 @@
+module Cronify
+  VERSION: String
+
+  type schedule_type = :interval | :daily | :weekday | :weekend | :ordinal_weekday | :bounded_interval
+  type unit_type = :hour | :minute
+  type ordinal_type = :first | :second | :third | :fourth | :last
+
+  class Error < StandardError
+  end
+
+  class ParseError < Error
+  end
+
+  class AmbiguousInputError < Error
+  end
+
+  def self.parse: (String input, ?timezone: String) -> Schedule
+end

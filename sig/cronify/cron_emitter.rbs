@@ -1,0 +1,15 @@
+module Cronify
+  class CronEmitter
+    ORDINAL_NUMBERS: Hash[ordinal_type, Integer]
+
+    def self.emit: (IR ir) -> String
+
+    private
+
+    def self.emit_interval: (IR ir) -> String?
+    def self.emit_daily: (IR ir) -> String
+    def self.emit_weekday_weekend: (IR ir) -> String
+    def self.emit_ordinal_weekday: (IR ir) -> String
+    def self.emit_bounded_interval: (IR ir) -> String
+  end
+end

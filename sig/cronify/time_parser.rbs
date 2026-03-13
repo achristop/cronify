@@ -1,0 +1,7 @@
+module Cronify
+  module TimeParser
+    TIME_PATTERN: Regexp
+
+    def parse_time: (String str) -> [Integer, Integer]
+  end
+end

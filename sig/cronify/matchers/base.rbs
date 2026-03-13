@@ -1,0 +1,9 @@
+module Cronify
+  module Matchers
+    class Base
+      def match?: (String input) -> bool
+
+      def parse: (String input) -> IR
+    end
+  end
+end

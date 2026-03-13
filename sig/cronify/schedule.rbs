@@ -1,0 +1,17 @@
+module Cronify
+  class Schedule
+    attr_reader cron: String
+    attr_reader timezone: String
+    attr_reader original_input: String
+
+    def initialize: (cron: String, timezone: String, original_input: String) -> void
+
+    def next_occurrence: () -> Time
+
+    def next_occurrences: (?n: Integer) -> Array[Time]
+
+    private
+
+    def validate_timezone!: (String tz) -> String
+  end
+end
