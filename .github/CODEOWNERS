@@ -1,0 +1,14 @@
+# Default owner for everything
+* @achristop
+
+# Core library
+lib/ @achristop
+
+# Type signatures
+sig/ @achristop
+
+# Tests
+spec/ @achristop
+
+# CI / workflows
+.github/ @achristop

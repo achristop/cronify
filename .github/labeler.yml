@@ -1,0 +1,23 @@
+tests:
+  - changed-files:
+      - any-glob-to-any-file: "spec/**/*"
+
+types:
+  - changed-files:
+      - any-glob-to-any-file: "sig/**/*"
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "README.md"
+          - "CHANGELOG.md"
+
+ci:
+  - changed-files:
+      - any-glob-to-any-file: ".github/**/*"
+
+dependencies:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "Gemfile"
+          - "cronify.gemspec"
