@@ -34,6 +34,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          mkdir -p ~/.gem
+          echo ":github: Bearer ${GITHUB_TOKEN}" > ~/.gem/credentials
+          chmod 0600 ~/.gem/credentials
           gem build cronify.gemspec
           gem push --key github \
             --host https://rubygems.pkg.github.com/${{ github.repository_owner }} \
