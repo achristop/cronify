@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "English"
+
+def run(cmd)
+  output = `#{cmd} 2>&1`
+  unless $CHILD_STATUS.success?
+    puts "Error running: #{cmd}"
+    puts output
+    exit 1
+  end
+  output
+end
+
+current_branch = `git rev-parse --abbrev-ref HEAD`.strip
+unless current_branch == "develop"
+  puts "Error: release must be created from the 'develop' branch (currently on '#{current_branch}')"
+  exit 1
+end
+
+version_file = File.expand_path("../lib/cronify/version.rb", __dir__)
+content = File.read(version_file)
+version = content.match(/VERSION = "(\d+\.\d+\.\d+)"/)[1]
+
+release_branch = "release_version_#{version.gsub(".", "_")}"
+
+run("git checkout -b #{release_branch}")
+
+puts "Release branch '#{release_branch}' created from develop."
+puts "Run the following to push:"
+puts ""
+puts "  git push -u origin #{release_branch}"
