@@ -44,14 +44,13 @@ new_content = content.sub(/VERSION = "\d+\.\d+\.\d+"/, %(VERSION = "#{new_versio
 File.write(version_file, new_content)
 puts "Bumped #{current.join(".")} → #{new_version}"
 
-run("git checkout -b bump_version_#{new_version.gsub(".", "_")}")
+branch_name = "bump_version_#{new_version.gsub(".", "_")}"
+
+run("git checkout -b #{branch_name}")
 run("bundle install")
 run("git add lib/cronify/version.rb Gemfile.lock")
 run("git commit -m 'chore: bump version to #{new_version}'")
 run("git tag -a v#{new_version} -m 'Release v#{new_version}'")
-
+run("git push origin #{branch_name} && git push origin v#{new_version}")
 puts ""
-puts "Version #{new_version} committed and tagged."
-puts "Run the following to push:"
-puts ""
-puts "  git push && git push --tags"
+puts "Version #{new_version} committed, tagged and pushed."
