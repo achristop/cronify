@@ -106,6 +106,32 @@ bundle exec rubocop  # lint
 bin/console          # interactive prompt
 ```
 
+## Releasing a new version
+
+Releases are made from the `develop` branch using the `bin/bump` script:
+
+```bash
+bin/bump patch   # 0.4.1 → 0.4.2
+bin/bump minor   # 0.4.1 → 0.5.0
+bin/bump major   # 0.4.1 → 1.0.0
+```
+
+The script will:
+
+1. Check that you are on the `develop` branch
+2. Create a new `bump_version_x_x_x` branch
+3. Update `lib/cronify/version.rb` and `Gemfile.lock`
+4. Commit both files and create an annotated git tag
+
+Once done, push the branch and open a PR against `develop`:
+
+```bash
+git push --set-upstream origin bump_version_x_x_x
+git push --tags
+```
+
+After the PR is merged into `develop`, open a second PR from `develop` → `main`. Merging into `main` and pushing the tag triggers the release workflow, which publishes the gem to RubyGems.org and GitHub Packages automatically.
+
 ## Type signatures
 
 Cronify ships with [RBS](https://github.com/ruby/rbs) type signatures in the `sig/` directory. To use them with your project's type checker:

@@ -1,0 +1,57 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "English"
+
+def usage
+  puts "Usage: bin/bump [major|minor|patch]"
+  exit 1
+end
+
+def run(cmd)
+  output = `#{cmd} 2>&1`
+  unless $CHILD_STATUS.success?
+    puts "Error running: #{cmd}"
+    puts output
+    exit 1
+  end
+  output
+end
+
+part = ARGV[0]
+usage unless %w[major minor patch].include?(part)
+
+current_branch = `git rev-parse --abbrev-ref HEAD`.strip
+unless current_branch == "develop"
+  puts "Error: version bumps must be done on the 'develop' branch (currently on '#{current_branch}')"
+  exit 1
+end
+
+version_file = File.expand_path("../lib/cronify/version.rb", __dir__)
+content = File.read(version_file)
+current = content.match(/VERSION = "(\d+)\.(\d+)\.(\d+)"/)[1..3].map(&:to_i)
+
+major, minor, patch = current
+case part
+when "major" then major += 1; minor = 0; patch = 0
+when "minor" then minor += 1; patch = 0
+when "patch" then patch += 1
+end
+
+new_version = "#{major}.#{minor}.#{patch}"
+new_content = content.sub(/VERSION = "\d+\.\d+\.\d+"/, %(VERSION = "#{new_version}"))
+
+File.write(version_file, new_content)
+puts "Bumped #{current.join(".")} → #{new_version}"
+
+run("git checkout -b bump_version_#{new_version.gsub(".", "_")}")
+run("bundle install")
+run("git add lib/cronify/version.rb Gemfile.lock")
+run("git commit -m 'chore: bump version to #{new_version}'")
+run("git tag -a v#{new_version} -m 'Release v#{new_version}'")
+
+puts ""
+puts "Version #{new_version} committed and tagged."
+puts "Run the following to push:"
+puts ""
+puts "  git push && git push --tags"
